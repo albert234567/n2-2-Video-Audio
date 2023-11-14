@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Àudio i Vídeo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <!-- Deixem l'etiqueta audio sense controls. Veieu que desapareix tot. -->
+    <audio id="player">
+        <source src="media/techbg.mp3" type="audio/mp3">
+        Ho sento, el teu navegador no suporta àudio d'HTML5.
+    </audio>
+    <!-- Afegim una capa que mostra si l'àudio s'està reproduint: ho fem amb una animació CSS. -->
+    <div class="fonsPlayer">
+        <div class="ocean">
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </div>
+    <!-- Afegim els botons de control com elements SVG personalitzats -->
+    <div class="controlButtons">
+        <svg class="playButton" width="50" height="50" viewBox="0 0 50 50" onclick="playAudio();">
+            <circle cx="25" cy="25" r="20" fill="#3498db" />
+            <polygon points="20,15 20,35 35,25" fill="#fff" />
+        </svg>
+        <svg class="pauseButton" width="50" height="50" viewBox="0 0 50 50" onclick="pauseAudio();">
+            <circle cx="25" cy="25" r="20" fill="#3498db" />
+            <rect x="17" y="15" width="5" height="20" fill="#fff" />
+            <rect x="28" y="15" width="5" height="20" fill="#fff" />
+        </svg>
+        <svg class="stopButton" width="50" height="50" viewBox="0 0 50 50" onclick="stopAudio();">
+            <circle cx="25" cy="25" r="20" fill="#3498db" />
+            <rect x="15" y="15" width="20" height="20" fill="#fff" />
+        </svg>
+        
+    </div>
+
+    <!-- Resta del codi com abans -->
+
+    <script>
+        let audio = document.getElementById('player');
+
+        function playAudio() {
+            audio.play();
+            var waves = document.querySelectorAll('.wave');
+            for (var i = 0; i < waves.length; i++) {
+                waves[i].classList.add('playing');
+            }
+        }
+
+        function pauseAudio() {
+            audio.pause();
+            var waves = document.querySelectorAll('.wave');
+            for (var i = 0; i < waves.length; i++) {
+                waves[i].classList.remove('playing');
+            }
+        }
+
+        function stopAudio() {
+            audio.pause();
+            audio.currentTime = 0;
+            var waves = document.querySelectorAll('.wave');
+            for (var i = 0; i < waves.length; i++) {
+                waves[i].classList.remove('playing');
+            }
+        }
+    </script>
+</body>
+</html>
